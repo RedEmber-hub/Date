@@ -1,14 +1,15 @@
 const express = require("express");
-
 const app = express();
 
-const inviteRoutes = require("./routes/inviteRoutes");
+const userRoutes = require("./routes/userRoutes");
+const invitationRoutes = require("./routes/invitationRoutes");
 
 const PORT = 3000;
 
 app.use(express.json());
 
-app.use("/invites", inviteRoutes);
+app.use("/users", userRoutes);
+app.use("/invitations", invitationRoutes);
 
 app.get("/", (req, res) => {
     res.send("Server is running");
