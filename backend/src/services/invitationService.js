@@ -10,28 +10,6 @@ async function getInvitations() {
     return result.rows;
 }
 
-async function createInvitation(invitation) {
-    const {
-        user_id,
-        girl_username,
-        token,
-    } = invitation;
-
-    const result = await pool.query(
-        `INSERT INTO invitations
-        (user_id, girl_username, token)
-        VALUES ($1, $2, $3)
-        RETURNING *`,
-        [
-            user_id,
-            girl_username,
-            token,
-        ]
-    );
-
-    return result.rows[0];
-}
-
 async function getInvitationByToken(token) {
     const result = await pool.query(
         `SELECT * FROM invitations
@@ -40,6 +18,32 @@ async function getInvitationByToken(token) {
     );
 
     return result.rows[0];
+}
+
+async function getWaitingInvitations(username) {
+    const result = await pool.query(
+        `SELECT *
+         FROM invitations
+         WHERE girl_username = $1
+           AND status = 'waiting_user'
+         ORDER BY created_at`,
+        [username]
+    );
+
+    return result.rows;
+}
+
+async function activateWaitingInvitations(username) {
+    const result = await pool.query(
+        `UPDATE invitations
+         SET status = 'pending'
+         WHERE girl_username = $1
+           AND status = 'waiting_user'
+         RETURNING *`,
+        [username]
+    );
+
+    return result.rows;
 }
 
 async function updateInvitationByToken(token, invitation) {
@@ -73,21 +77,23 @@ async function updateInvitationByToken(token, invitation) {
 
 async function createInvitation(invitation) {
     const {
-        user_id,
-        girl_username,
+         user_id,
+    girl_username,
+    status,
     } = invitation;
 
     const token = crypto.randomUUID();
 
     const result = await pool.query(
         `INSERT INTO invitations
-        (user_id, girl_username, token)
-        VALUES ($1, $2, $3)
+        (user_id, girl_username, token, status)
+        VALUES ($1, $2, $3, $4)
         RETURNING *`,
         [
             user_id,
             girl_username,
             token,
+            status,
         ]
     );
 
@@ -99,4 +105,6 @@ module.exports = {
     createInvitation,
     getInvitationByToken,
     updateInvitationByToken,
+    getWaitingInvitations,
+    activateWaitingInvitations,
 };
