@@ -45,6 +45,38 @@ async function getInvitationByToken(req, res) {
     }
 }
 
+async function getWaitingInvitations(req, res) {
+    try {
+        const invitations =
+            await invitationService.getWaitingInvitations(
+                req.params.username
+            );
+
+        res.json(invitations);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: "Ошибка получения приглашений",
+        });
+    }
+}
+
+async function activateWaitingInvitations(req, res) {
+    try {
+        const invitations =
+            await invitationService.activateWaitingInvitations(
+                req.params.username
+            );
+
+        res.json(invitations);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: "Ошибка активации приглашений",
+        });
+    }
+}
+
 async function updateInvitation(req, res) {
     try {
         const invitation =
@@ -70,6 +102,8 @@ async function updateInvitation(req, res) {
 module.exports = {
     getInvitations,
     createInvitation,
-     getInvitationByToken,
-      updateInvitation,
+    getInvitationByToken,
+    updateInvitation,
+    getWaitingInvitations,
+    activateWaitingInvitations,
 };
