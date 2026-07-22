@@ -1,0 +1,31 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: transparent;
+  margin-right: calc(-1 * (100vw - 100%)) !important;
+}
+
+#root {
+  height: 100dvh;
+  display: flex;
+}
+
+img,
+video {
+  height: 100%;
+  max-width: 100%;
+}
+
+svg {
+  display: flex;
+}
