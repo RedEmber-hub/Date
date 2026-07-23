@@ -1,10 +1,10 @@
 .app {
-    &__button{
-        width: 386px;
-        height: 55px;
+  &__button {
+    width: 386px;
+    height: 55px;
 
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
 }

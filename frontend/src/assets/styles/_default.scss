@@ -1,3 +1,5 @@
+@use './mixins.scss' as *;
+
 *,
 *:before,
 *:after {
@@ -18,6 +20,7 @@ html {
 #root {
   height: 100dvh;
   display: flex;
+  background: rgb(48, 47, 47);
 }
 
 img,
@@ -28,4 +31,8 @@ video {
 
 svg {
   display: flex;
+}
+
+.visually-hidden {
+  @include visually-hidden();
 }

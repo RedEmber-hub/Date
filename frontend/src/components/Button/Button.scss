@@ -1,20 +1,30 @@
 .button {
-    display: block;
-    width: 100%;
-    padding: 16px 24px;
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
 
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
 
-    &--primary {
-        background-color: rgb(255, 79, 135);
-        color: rgb(255, 255, 255);
+  &--primary {
+    background-color: rgb(255, 79, 135);
+    box-shadow: rgba(255, 79, 135, 0.38) 0px 4px 20px;
+    color: rgb(255, 255, 255);
+
+    &:hover {
+      background-color: rgb(255, 61, 121);
     }
+  }
 
-    &--secondary {
-        background-color: rgb(255, 255, 255);
-        color: rgb(111, 114, 128);
-        border: 1px solid rgb(245, 227, 232);
+  &--secondary {
+    background-color: transparent;
+    color: rgb(111, 114, 128);
+    border: 1px solid rgb(245, 227, 232);
+
+    &:hover {
+      background-color: rgb(255, 231, 239);
+      color: rgb(255, 79, 135);
     }
+  }
 }

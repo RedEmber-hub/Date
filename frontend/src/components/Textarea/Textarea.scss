@@ -1,0 +1,27 @@
+.textarea {
+  position: relative;
+
+  textarea {
+    min-height: 150px;
+    width: 100%;
+    resize: none;
+    padding: 16px;
+    border: 1px solid rgb(245, 227, 232);
+    border-radius: 16px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(45, 45, 53);
+    outline: none;
+
+    &:not(:placeholder-shown) {
+      border-color: rgb(255, 79, 135);
+      box-shadow: rgba(255, 79, 135, 0.1) 0px 0px 0px 3px;
+    }
+  }
+
+  &__counter {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    color: rgb(255, 179, 199);
+  }
+}
